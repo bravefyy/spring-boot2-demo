@@ -7,11 +7,12 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.embedded.tomcat.TomcatWebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.jndi.JndiObjectFactoryBean;
 
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class DBConfiguration {
     @Bean
     public ServletWebServerFactory servletContainer() {
@@ -28,10 +29,14 @@ public class DBConfiguration {
                 ContextResource resource = new ContextResource();
                 resource.setName("jdbc/MyFirstMySql");
                 resource.setType(DataSource.class.getName());
-                resource.setProperty("driverClassName", "com.mysql.cj.jdbc.Driver");
-                resource.setProperty("url", "jdbc:mysql://192.168.50.154:3306/testdb_jndi?serverTimezone=GMT%2B8");
-                resource.setProperty("username", "root");
-                resource.setProperty("password","123321");
+//                resource.setProperty("driverClassName", "com.mysql.cj.jdbc.Driver");
+                resource.setProperty("driverClassName", "org.h2.Driver");
+//                resource.setProperty("url", "jdbc:mysql://192.168.50.154:3306/testdb_jndi?serverTimezone=GMT%2B8");
+                resource.setProperty("url", "jdbc:h2:~/test");
+//                resource.setProperty("username", "root");
+                resource.setProperty("username", "sa");
+//                resource.setProperty("password","123321");
+                resource.setProperty("password","123456");
                 context.getNamingResources().addResource(resource);
 
                 //数据源 2
@@ -45,9 +50,19 @@ public class DBConfiguration {
 //                resource1.setProperty("password","123456");
 //                context.getNamingResources().addResource(resource1);
 
-                super.postProcessContext(context);
+//                super.postProcessContext(context);
             }
         };
         return tomcat;
+    }
+
+//    @Bean
+    public DataSource jndiDataSource() throws IllegalArgumentException, NamingException {
+        JndiObjectFactoryBean bean = new JndiObjectFactoryBean();
+        bean.setJndiName("java:comp/env/jdbc/MyFirstMySql");
+        bean.setProxyInterface(DataSource.class);
+        bean.setLookupOnStartup(false);
+        bean.afterPropertiesSet();
+        return (DataSource)bean.getObject();
     }
 }
