@@ -1,0 +1,23 @@
+server:
+  port: 80
+  tongweb:
+    language: zh
+    country: cn
+
+
+
+spring:
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # druid \u914D\u7F6E\u5C5E\u6027
+#    initial-size:
+#    min-idle:
+#    max-active:
+#    time-between-eviction-runs-millis:
+#    test-on-borrow:
+#    phy-timeout-millis:
+#    validation-query:
