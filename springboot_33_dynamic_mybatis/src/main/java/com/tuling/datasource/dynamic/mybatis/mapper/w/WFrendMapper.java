@@ -2,10 +2,7 @@ package com.tuling.datasource.dynamic.mybatis.mapper.w;
 
 
 import com.tuling.datasource.dynamic.mybatis.entity.Frend;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 /**
  * @Auther: wangyi
@@ -13,9 +10,13 @@ import java.util.List;
  * @Description: 
  */
 public interface WFrendMapper {
-    @Select("SELECT * FROM Frend")
-    List<Frend> list();
+    // @Select("SELECT * FROM Frend")
+    @Select("SELECT 'writer'")
+    // List<Frend> list();
+    public String list();
 
-    @Insert("INSERT INTO  frend(`name`) VALUES (#{name})")
-    void save(Frend frend);
+    // @Insert("INSERT INTO  frend(`name`) VALUES (#{name})")
+    @Select("select 'writer1'")
+    // void save(Frend frend);
+    public String save(Frend frend);
 }

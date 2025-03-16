@@ -3,15 +3,14 @@ package com.tuling.datasource.dynamic.mybatis.service;
 
 import com.tuling.datasource.dynamic.mybatis.entity.Frend;
 
-import java.util.List;
-
 /***
  * @Author 徐庶   QQ:1092002729
  * @Slogan 致敬大师，致敬未来的你
  */
 public interface FrendService  {
 
-    List<Frend> list();
+    // List<Frend> list();
+    String list();
 
     // 保存-- 写库
     void saveW(Frend frend);

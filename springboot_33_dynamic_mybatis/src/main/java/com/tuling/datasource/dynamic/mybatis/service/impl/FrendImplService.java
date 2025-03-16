@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import java.util.List;
-
 /***
  * @Author 徐庶   QQ:1092002729
  * @Slogan 致敬大师，致敬未来的你
@@ -33,7 +31,8 @@ public class FrendImplService implements FrendService {
 
     // 读-- 读库
     @Override
-    public List<Frend> list() {
+    // public List<Frend> list() {
+    public String list() {
         return rFrendMapper.list();
     }
 

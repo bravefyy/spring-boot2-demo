@@ -4,13 +4,9 @@ import com.tuling.datasource.dynamic.mybatis.entity.Frend;
 import com.tuling.datasource.dynamic.mybatis.service.FrendService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.TransactionManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /***
  * @Author 徐庶   QQ:1092002729
@@ -25,8 +21,11 @@ public class FrendController {
     private FrendService frendService;
 
     @GetMapping(value = "select")
-    public List<Frend> select(){
-        return frendService.list();
+    // public List<Frend> select(){
+    //     return frendService.list();
+    // }
+    public void select(){
+        System.out.println(frendService.list());
     }
 
 
